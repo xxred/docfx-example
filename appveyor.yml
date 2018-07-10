@@ -5,7 +5,7 @@ environment: # 环境变量，在这里声明，下面使用
     secure: t74btP1uJUIXa65tTiQGWAZvYmJSNjSruJV90exd++sAjrKpo7f6e4LGJJLGIKb3
 
 image: Visual Studio 2017 # 镜像，也就是所依赖的环境
-before_deploy: # 部署之前之前触发
+init: # 初始化
     # 以下通过choco安装docfx
   - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
@@ -14,17 +14,11 @@ before_deploy: # 部署之前之前触发
             choco install docfx -y
             # choco install nuget.commandline -y
         }
-build_script:
-# 编译.net项目，这里暂时用不到，先注释
-#  - msbuild src/SampleClass1/SampleClass1.sln
-
-deploy_script: # 部署
-    # 以下就是配置git账号和token，将最终生成的html部署（提交）到你的站点（仓库），
+build_script: # 构建生成
   - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
         {
             #-----------利用docfx命令生成html-----------------------------------------------------start
-
             # & nuget install docfx.console -Version 2.18.4 -Source https://www.myget.org/F/docfx/api/v3/index.json
             # & docfx.console.2.18.4\tools\docfx docfx.json
             & docfx docfx.json
@@ -32,7 +26,15 @@ deploy_script: # 部署
               throw [System.Exception] "docfx build failed with exit code $lastexitcode."
             }
             #-----------利用docfx命令生成html-------------------------------------------------------end
+        }
+# 编译.net项目，这里暂时用不到，先注释
+#  - msbuild src/SampleClass1/SampleClass1.sln
 
+on_success: # 成功构建之后部署
+    # 以下就是配置git账号和token，将最终生成的html部署（提交）到你的站点（仓库），
+  - ps: |
+        if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
+        {
             #-----------配置git账号信息，使用到的就是上面的环境变量----------------------------------start
             git config --global credential.helper store
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
