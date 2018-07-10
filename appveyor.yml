@@ -23,28 +23,29 @@ after_build: # 构建项目之后触发，要部署就在这里操作
   - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
         {
-#-----------利用docfx命令生成html-----------------------------------------------------start
+    #-----------利用docfx命令生成html-----------------------------------------------------start
+
             # & nuget install docfx.console -Version 2.18.4 -Source https://www.myget.org/F/docfx/api/v3/index.json
             # & docfx.console.2.18.4\tools\docfx docfx.json
             & docfx docfx.json
             if ($lastexitcode -ne 0){
               throw [System.Exception] "docfx build failed with exit code $lastexitcode."
             }
-#-----------利用docfx命令生成html-------------------------------------------------------end
+    #-----------利用docfx命令生成html-------------------------------------------------------end
 
-#-----------配置git账号信息，使用到的就是上面的环境变量----------------------------------start
+    #-----------配置git账号信息，使用到的就是上面的环境变量----------------------------------start
             git config --global credential.helper store
             Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
             git config --global user.email $env:op_build_user_email
             git config --global user.name $env:op_build_user
-#-----------配置git账号信息，使用到的就是上面的环境变量------------------------------------end
+    #-----------配置git账号信息，使用到的就是上面的环境变量------------------------------------end
 
-#-----------这里就是部署的地方，克隆你项目的pages分支，复制生成的html然后提交--------------start
+    #-----------这里就是部署的地方，克隆你项目的pages分支，复制生成的html然后提交--------------start
             git clone https://github.com/xxred/docfx-example.git -b gh-pages origin_site -q
             Copy-Item origin_site/.git _site -recurse
             CD _site
             git add -A 2>&1
             git commit -m "CI Updates" -q
             git push origin gh-pages -q
-#-----------这里就是部署的地方，克隆你项目的pages分支，复制生成的html然后提交----------------end
+    #-----------这里就是部署的地方，克隆你项目的pages分支，复制生成的html然后提交----------------end
         }
