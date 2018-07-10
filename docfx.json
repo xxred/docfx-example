@@ -44,7 +44,8 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**"
+          "_site/**",
+          "README.md"
         ]
       }
     ],
