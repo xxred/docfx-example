@@ -2,10 +2,13 @@ environment: # 环境变量，在这里声明，下面使用
   op_build_user: "OpenPublishBuild"
   op_build_user_email: "vscopbld@microsoft.com"
   access_token:
-    secure: t74btP1uJUIXa65tTiQGWAZvYmJSNjSruJV90exd++sAjrKpo7f6e4LGJJLGIKb3
+    secure: bCtIcPHYlrOYLppEVAH8R4VZpAWou5dKlDhbEPyXfgmI9wEMvH4MD0fFXYrv5sLS
 
 image: Visual Studio 2017 # 镜像，也就是所依赖的环境
 init: # 初始化
+  - git config --global core.aurocrlf true #自动完成标准化与转换（CRLF 与 LF 自动转换）
+  
+install: #
     # 以下通过choco安装docfx
   - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
