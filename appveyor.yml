@@ -14,7 +14,7 @@ before_deploy: # 部署之前之前触发
             choco install docfx -y
             # choco install nuget.commandline -y
         }
-#build_script:
+build_script:
 # 编译.net项目，这里暂时用不到，先注释
 #  - msbuild src/SampleClass1/SampleClass1.sln
 
