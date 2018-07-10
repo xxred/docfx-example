@@ -71,6 +71,17 @@
 <h1 id="docfx示例">docfx示例</h1>
 
 <p><a href="https://ci.appveyor.com/project/xxred/docfx-example"><img src="https://ci.appveyor.com/api/projects/status/psjd5g56kr0vayiw?svg=true" alt="Build status"></a></p>
+<h2 id="介绍">介绍</h2>
+<p>这个<a href="https://github.com/dotnet/docfx">docfx</a>例子包含官方初始化的简单例子，增加了appveyor的配置文件<code>appveyor.yml</code>。利用此例子可以快速简单构建自己的文档/博客站点，并用markdown书写，集成appveyor自动构建部署，只需要提交修改或者直接在线修改，即可在自己的站点看到效果！</p>
+<h2 id="使用">使用</h2>
+<ul>
+<li>fork一份到自己的仓库</li>
+<li>按照<a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">这个教程</a>创建一份自己的token,然后去<a href="https://ci.appveyor.com/tools/encrypt">appveyor官网</a>加密，得到最后的<code>access_token</code></li>
+<li>修改<code>appveyor.yml</code>文件，access_token替换为自己的</li>
+<li><code>appveyor.yml</code>倒数大概七行这样的地方，<code>git clone</code>后面的地址换成自己的地址</li>
+<li>按照<a href="https://www.appveyor.com/docs/">官网步骤</a>操作，关联项目，开始构建，构建完之后访问自己的地址即可验证</li>
+<li>地址格式为：<code>https://github.com/</code></li>
+</ul>
 </article>
           </div>
           
