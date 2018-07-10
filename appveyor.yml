@@ -23,7 +23,7 @@ after_build: # 构建项目之后触发，要部署就在这里操作
   - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
         {
-    #-----------利用docfx命令生成html-----------------------------------------------------start
+            #-----------利用docfx命令生成html-----------------------------------------------------start
 
             # & nuget install docfx.console -Version 2.18.4 -Source https://www.myget.org/F/docfx/api/v3/index.json
             # & docfx.console.2.18.4\tools\docfx docfx.json
