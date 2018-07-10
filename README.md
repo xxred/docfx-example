@@ -12,4 +12,4 @@
 - 修改`appveyor.yml`文件，access_token替换为自己的
 - `appveyor.yml`倒数大概七行这样的地方，`git clone`后面的地址换成自己的地址
 - 按照[官网步骤](https://www.appveyor.com/docs/)操作，关联项目，开始构建，构建完之后访问自己的地址即可验证
-- 地址格式为：`https://github.com/`
+- 地址格式为：`https://你的用户名/github.io/你的项目名`
