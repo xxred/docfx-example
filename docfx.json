@@ -26,7 +26,7 @@
           "articles/**.md",
           "articles/**/toc.yml",
           "toc.yml",
-          "*.md"
+          "index.md"
         ]
       }
     ],
@@ -44,8 +44,7 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**",
-          "README.md"
+          "_site/**"
         ]
       }
     ],
