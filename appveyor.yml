@@ -5,7 +5,7 @@ environment: # 环境变量，在这里声明，下面使用
     secure: t74btP1uJUIXa65tTiQGWAZvYmJSNjSruJV90exd++sAjrKpo7f6e4LGJJLGIKb3
 
 image: Visual Studio 2017 # 镜像，也就是所依赖的环境
-before_build: # 构建之前触发
+before_deploy: # 部署之前之前触发
     # 以下通过choco安装docfx
   - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
@@ -18,7 +18,7 @@ before_build: # 构建之前触发
 # 编译.net项目，这里暂时用不到，先注释
 #  - msbuild src/SampleClass1/SampleClass1.sln
 
-after_build: # 构建项目之后触发，要部署就在这里操作
+deploy_script: # 部署
     # 以下就是配置git账号和token，将最终生成的html部署（提交）到你的站点（仓库），
   - ps: |
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
