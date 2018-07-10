@@ -7,7 +7,10 @@ environment: # 环境变量，在这里声明，下面使用
 image: Visual Studio 2017 # 镜像，也就是所依赖的环境
 init: # 初始化
   - git config --global core.aurocrlf true #自动完成标准化与转换（CRLF 与 LF 自动转换）
-  
+  - ps: |
+        write-host $env:APPVEYOR_ACCOUNT_NAME
+        write-host $env:APPVEYOR_PROJECT_NAME
+        write-host $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_NAME
 install: #
     # 以下通过choco安装docfx
   - ps: |
@@ -40,13 +43,13 @@ on_success: # 成功构建之后部署
         {
             #-----------配置git账号信息，使用到的就是上面的环境变量----------------------------------start
             git config --global credential.helper store
-            Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+            # Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
             git config --global user.email $env:op_build_user_email
             git config --global user.name $env:op_build_user
             #-----------配置git账号信息，使用到的就是上面的环境变量------------------------------------end
 
             #-----------这里就是部署的地方，克隆你项目的pages分支，复制生成的html然后提交--------------start
-            git clone https://github.com/xxred/docfx-example.git -b gh-pages origin_site -q
+            git clone https://github.com/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_NAME.git -b gh-pages origin_site -q
             Copy-Item origin_site/.git _site -recurse
             CD _site
             git add -A 2>&1
