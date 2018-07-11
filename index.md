@@ -1,4 +1,4 @@
-# 主页.
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
-## Quick Start Notes:
-1. Add images to the *images* folder if the file is referencing an image.
+# 主页
+去这里 [Markdown](http://daringfireball.net/projects/markdown/)，告诉你怎么写markdown文件。
+## 快速开始
+1. 如果你想引用一张图片，增加一个图片到 *images* 文件夹。
