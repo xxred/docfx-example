@@ -6,7 +6,7 @@ environment: # 环境变量，在这里声明，下面使用
 
 image: Visual Studio 2017 # 镜像，也就是所依赖的环境
 init: # 初始化
-  - git config --global core.auocrlf false # 禁止自动完成标准化与转换（CRLF 与 LF 自动转换）
+  - git config --global core.autocrlf false # 禁止自动完成标准化与转换（CRLF 与 LF 自动转换）
   - ps: |
         write-host $env:APPVEYOR_ACCOUNT_NAME
         write-host $env:APPVEYOR_PROJECT_NAME
