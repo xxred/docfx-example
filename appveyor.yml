@@ -26,8 +26,8 @@ build_script: # 构建生成
         {
             #-----------利用docfx命令生成html-----------------------------------------------------start
             & nuget install docfx.console  # -Version 2.18.4 -Source https://www.myget.org/F/docfx/api/v3/index.json
-            # & docfx.console.2.18.4\tools\docfx docfx.json
-            & docfx docfx.json
+            & docfx.console\tools\docfx docfx.json
+            # & docfx docfx.json
             if ($lastexitcode -ne 0){
               throw [System.Exception] "docfx build failed with exit code $lastexitcode."
             }
