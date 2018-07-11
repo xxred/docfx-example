@@ -8,8 +8,8 @@
 ## 使用
 
 - fork一份到自己的仓库
-- 按照[这个教程](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)创建一份自己的token,然后去[appveyor官网](https://ci.appveyor.com/tools/encrypt)加密，得到最后的`access_token`
-- 修改`appveyor.yml`文件，access_token替换为自己的
-- `appveyor.yml`倒数大概七行这样的地方，`git clone`后面的地址换成自己的地址
-- 按照[官网步骤](https://www.appveyor.com/docs/)操作，关联项目，开始构建，构建完之后访问自己的地址即可验证
-- 地址格式为：`https://你的用户名/github.io/你的项目名`
+- 打开[appveyor官网](https://ci.appveyor.com)，并使用github账号直接登陆
+- 找到并点击`PROJECTS`
+- 接着点击`NEW PROJECT`，在github那一栏，选择上面创建的项目，鼠标放在上面并点击`Add`
+- 然后再选择的这个项目的面板，点击`NEW BUILD`
+- 构建成功即可访问你的站点，站点地址格式为：`https://你的用户名/github.io/你的项目名`
