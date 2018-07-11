@@ -17,7 +17,7 @@ install: #
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
         {
             git checkout $env:APPVEYOR_REPO_BRANCH -q
-            choco install docfx -y
+            # choco install docfx -y
             # choco install nuget.commandline -y
         }
 build_script: # 构建生成
@@ -25,8 +25,8 @@ build_script: # 构建生成
         if(-Not $env:APPVEYOR_PULL_REQUEST_TITLE)
         {
             #-----------利用docfx命令生成html-----------------------------------------------------start
-            # & nuget install docfx.console -Version 2.18.4 -Source https://www.myget.org/F/docfx/api/v3/index.json
-            # & docfx.console.2.18.4\tools\docfx docfx.json
+            & nuget install docfx.console -Version 2.18.4 -Source https://www.myget.org/F/docfx/api/v3/index.json
+            & docfx.console.2.18.4\tools\docfx docfx.json
             & docfx docfx.json
             if ($lastexitcode -ne 0){
               throw [System.Exception] "docfx build failed with exit code $lastexitcode."
