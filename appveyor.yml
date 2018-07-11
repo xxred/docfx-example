@@ -4,7 +4,7 @@ environment: # 环境变量，在这里声明，下面使用
   access_token:
     secure: bCtIcPHYlrOYLppEVAH8R4VZpAWou5dKlDhbEPyXfgmI9wEMvH4MD0fFXYrv5sLS
 
-image: Visual Studio 2017 # 镜像，也就是所依赖的环境
+image: Visual Studio 2015 # 镜像，也就是所依赖的环境
 init: # 初始化
   - git config --global core.aurocrlf false # 禁止自动完成标准化与转换（CRLF 与 LF 自动转换）
   - ps: |
