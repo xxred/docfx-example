@@ -10,7 +10,6 @@ init: # 初始化
   - ps: |
         write-host $env:APPVEYOR_ACCOUNT_NAME
         write-host $env:APPVEYOR_PROJECT_NAME
-        write-host $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_NAME
 install: #
     # 以下通过choco安装docfx
   - ps: |
@@ -56,4 +55,5 @@ on_success: # 成功构建之后部署
             git commit -m "CI Updates" -q
             git push origin gh-pages -q
             #-----------这里就是部署的地方，克隆你项目的pages分支，复制生成的html然后提交----------------end
+            write-host https://$env:APPVEYOR_ACCOUNT_NAME/github.io/$env:APPVEYOR_PROJECT_NAME/
         }
